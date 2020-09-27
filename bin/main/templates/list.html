@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"
+	th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+<title>管理者一覧検索画面</title>
+</head>
+<body>
+	<h2>管理者一覧検索</h2>
+	<form name="searchForm" th:action="@{/list/search}"
+		th:object="${keyWord}" method="get" onSubmit="return allNull(this)">
+		<span>ユーザ名</span><input type="search" name="name" th:value="${keyWord.name}">
+		<span>ログインID</span><input type="search" name="loginId" th:value="${keyWord.loginId}">
+		<input type="submit" value="検索">
+	</form>
+	<table>
+		<thead>
+			<tr>
+				<th>ログインID</th>
+				<th>ユーザ名</th>
+				<th>作成日時</th>
+				<th>作成者</th>
+				<th>更新日時</th>
+				<th>更新者</th>
+				<th>編集</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="adminUser : ${adminUsers}" th:object="${adminUsers}">
+				<td th:text="${adminUser.loginId}"></td>
+				<td th:text="${adminUser.name}"></td>
+				<td th:text="${adminUser.createdAt}"></td>
+				<td th:text="${adminUser.createdAtUser}"></td>
+				<td th:text="${adminUser.updatedAt}"></td>
+				<td th:text="${adminUser.updatedAtUser}"></td>
+            <td><a th:href = "@{/edit/{id}(id=${adminUser.id})}">編集</a></td>
+		</tbody>
+	</table></body>
+</html>

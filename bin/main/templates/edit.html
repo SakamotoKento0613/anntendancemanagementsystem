@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"
+	th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+<script th:inline="javascript">
+	var message = /*[[${message}]]*/
+	if (message != null) {
+		alert(message);
+	}
+</script>
+<title>管理者編集画面</title>
+</head>
+<body>
+	<h2>管理者編集</h2>
+	<form th:action="@{/edit/{id}(id=*{id})}"
+		th:object="${adminUserRequest}" th:method="post">
+		<label>ログインID</label> <input type="text" name="input"
+			th:field="*{loginId}" /> <label>ユーザ名</label> <input type="text"
+			name="input" th:field="*{name}" /> <input type="submit" value="更新" />
+	</form>
+	<table>
+		<tr th:if="${errorMsg}" th:each="error : ${validationError}">
+			<td style="color: red;" th:text="${error}"></td>
+		</tr>
+	</table>
+</body>
+</html>
