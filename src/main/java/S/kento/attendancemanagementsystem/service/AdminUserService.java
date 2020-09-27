@@ -87,6 +87,7 @@ public class AdminUserService {
 
 		adminUser.setLoginId(adminUserRequest.getLoginId());
 		adminUser.setName(adminUserRequest.getName());
+		adminUser.setPassword(adminUserRequest.getPassword());
 		adminUser.setUpdatedAt(now);
 		adminUser.setUpdatedAtUser(1);//Todo
 		adminUserRepository.save(adminUser);

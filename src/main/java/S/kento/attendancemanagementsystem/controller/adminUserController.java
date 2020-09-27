@@ -120,10 +120,17 @@ public class adminUserController {
 	 */
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
 	public String adminUserUpdateFunction(@Validated @ModelAttribute("adminUserRequest") AdminUserRequest adminUserRequest,
-			BindingResult result, RedirectAttributes redirectAttributes, Model model) throws ParseException {
+			BindingResult result, Model model) throws ParseException {
+		//バリデーションエラー
+		if (result.hasErrors()) {
+			List<String> errorList = new ArrayList<String>();
+			for (ObjectError error : result.getAllErrors()) {
+				errorList.add(error.getDefaultMessage());
+			}
+			model.addAttribute("errorMsg", errorList);
+			return "edit";
+		}
 		adminUserService.update(adminUserRequest);
 		return "/edit";
 	}
-
-
 }
