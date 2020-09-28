@@ -26,8 +26,8 @@ public class Users {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")//管理者ID
 	private Integer id;
-	@Column(name = "loginId")//ログインID
-	private String loginId;
+	@Column(name = "email")//email
+	private String email;
 	@Column(name = "name")//ユーザ名
 	private String name;
 	@Column(name = "password")//パスワード

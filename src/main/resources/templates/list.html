@@ -12,13 +12,13 @@
 	<form name="searchForm" th:action="@{/list/search}"
 		th:object="${keyWord}" method="get" onSubmit="return allNull(this)">
 		<span>ユーザ名</span><input type="search" name="name" th:value="${keyWord.name}">
-		<span>ログインID</span><input type="search" name="loginId" th:value="${keyWord.loginId}">
+		<span>メールアドレス</span><input type="search" name="email" th:value="${keyWord.email}">
 		<input type="submit" value="検索">
 	</form>
 	<table>
 		<thead>
 			<tr>
-				<th>ログインID</th>
+				<th>メールアドレス</th>
 				<th>ユーザ名</th>
 				<th>作成日時</th>
 				<th>作成者</th>
@@ -29,7 +29,7 @@
 		</thead>
 		<tbody>
 			<tr th:each="adminUser : ${adminUsers}" th:object="${adminUsers}">
-				<td th:text="${adminUser.loginId}"></td>
+				<td th:text="${adminUser.email}"></td>
 				<td th:text="${adminUser.name}"></td>
 				<td th:text="${adminUser.createdAt}"></td>
 				<td th:text="${adminUser.createdAtUser}"></td>

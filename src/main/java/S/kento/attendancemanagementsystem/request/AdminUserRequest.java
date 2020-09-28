@@ -10,9 +10,9 @@ import lombok.Data;
 @Data
 public class AdminUserRequest implements Serializable {
 	private Integer id;
-	@NotEmpty(message = "ログインIDが空白です")
-	@Size(min = 8,max = 20, message = "ログインIDは8文字から20文字以内で入力してください。")
-	private String loginId;//Todo ユニークキーになっているので被ったらエラーを出力するようにする
+	@NotEmpty(message = "メールアドレスが空白です")
+	@Size(min = 8,max = 20, message = "メールアドレスは8文字から20文字以内で入力してください。")
+	private String email;//Todo ユニークキーになっているので被ったらエラーを出力するようにする
 	@NotEmpty(message = "ユーザ名が空白です")
 	@Size(min = 3,max = 40, message = "ユーザ名は3文字から40文字以内で入力してください。")
 	private String name;

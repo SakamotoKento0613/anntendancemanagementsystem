@@ -16,7 +16,7 @@
 <body>
 	<h2>管理者登録</h2>
 	<form th:action="@{/add}" th:object="${adminUsers}" th:method="post">
-		<label>ログインID</label><input type="text" th:field="*{loginId}">
+		<label>メールアドレス</label><input type="email" th:field="*{email}">
 		<label>ユーザ名</label><input type="text" th:field="*{name}"> <label>パスワード</label><input
 			type="password" th:field="*{password}"> <label>確認用パスワード</label><input
 			type="password"> <input type="submit" value="登録" />

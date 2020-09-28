@@ -17,8 +17,8 @@
 	<h2>管理者編集</h2>
 	<form th:action="@{/edit/{id}(id=*{id})}"
 		th:object="${adminUserRequest}" th:method="post">
-		<label>ログインID</label> <input type="text" name="input"
-			th:field="*{loginId}" /> <label>ユーザ名</label> <input type="text"
+		<label>メールアドレス</label> <input type="email" name="input"
+			th:field="*{email}" /> <label>ユーザ名</label> <input type="text"
 			name="input" th:field="*{name}" /> <label>パスワード</label> <input
 			type="password" name="input" th:field="*{password}" /> <input
 			type="submit" value="更新" />

@@ -83,12 +83,12 @@ public class adminUserController {
 	 */
 	@GetMapping("/list/search")
 	public String adminUserFindFunction(@RequestParam(name = "name", required = false) String name,
-			@RequestParam(name = "loginId", required = false) String loginId, Model model) {
-		List<Users> result = adminUserService.findByNameAndLoginId(name,loginId);
+			@RequestParam(name = "email", required = false) String email, Model model) {
+		List<Users> result = adminUserService.findByNameAndLoginId(name,email);
 		model.addAttribute("adminUsers", result);
 		AdminUserRequest adminUserRequest = new AdminUserRequest();
 		adminUserRequest.setName(name);
-		adminUserRequest.setLoginId(loginId);
+		adminUserRequest.setEmail(email);
 		model.addAttribute("keyWord", adminUserRequest);
 		return "list";
 	}
@@ -105,7 +105,7 @@ public class adminUserController {
 
 		AdminUserRequest adminUserRequest = new AdminUserRequest();
 		adminUserRequest.setId(adminUsers.getId());
-		adminUserRequest.setLoginId(adminUsers.getLoginId());
+		adminUserRequest.setEmail(adminUsers.getEmail());
 		adminUserRequest.setName(adminUsers.getName());
 		model.addAttribute("adminUserRequest", adminUserRequest);
 		return "/edit";

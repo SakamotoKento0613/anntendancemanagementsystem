@@ -36,7 +36,7 @@ public class AdminUserService {
 		fmt.setTimeZone(timezone);
 		Date now = fmt.parse(fmt.format(date));
 		adminUser.setId(adminUserRequest.getId());
-		adminUser.setLoginId(adminUserRequest.getLoginId());
+		adminUser.setEmail(adminUserRequest.getEmail());
 		adminUser.setName(adminUserRequest.getName());
 		adminUser.setPassword(adminUserRequest.getPassword());
 		adminUser.setCreatedAt(now);
@@ -57,11 +57,11 @@ public class AdminUserService {
 	/**
 	 * 管理者検索機能
 	 * @param name
-	 * @param loginId
+	 * @param email
 	 * @return 検索結果（完全一致）
 	 */
-	public List<Users> findByNameAndLoginId(String name, String loginId) {
-		return adminUserRepository.findByNameContainingAndLoginIdContainingOrderById(name, loginId);
+	public List<Users> findByNameAndLoginId(String name, String email) {
+		return adminUserRepository.findByNameContainingAndEmailContainingOrderById(name, email);
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class AdminUserService {
 		Date now = fmt.parse(fmt.format(date));
 		Users adminUser = findById(adminUserRequest.getId());
 
-		adminUser.setLoginId(adminUserRequest.getLoginId());
+		adminUser.setEmail(adminUserRequest.getEmail());
 		adminUser.setName(adminUserRequest.getName());
 		adminUser.setPassword(adminUserRequest.getPassword());
 		adminUser.setUpdatedAt(now);

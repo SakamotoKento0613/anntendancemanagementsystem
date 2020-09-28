@@ -10,5 +10,5 @@ import S.kento.attendancemanagementsystem.entity.mst.Users;
 @Repository
 public interface AdminUserRepository extends JpaRepository<Users, Integer> {
 	//管理者検索処理
-	List<Users> findByNameContainingAndLoginIdContainingOrderById(String name, String loginId);
+	List<Users> findByNameContainingAndEmailContainingOrderById(String name, String email);
 }
