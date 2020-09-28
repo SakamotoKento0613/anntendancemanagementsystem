@@ -102,7 +102,6 @@ public class adminUserController {
 	@GetMapping(value = "/edit/{id}")
 	public String adminUserEditDisplay(@PathVariable Integer id, Model model) {
 		Users adminUsers = adminUserService.findById(id);
-
 		AdminUserRequest adminUserRequest = new AdminUserRequest();
 		adminUserRequest.setId(adminUsers.getId());
 		adminUserRequest.setEmail(adminUsers.getEmail());
@@ -130,6 +129,9 @@ public class adminUserController {
 			model.addAttribute("errorMsg", errorList);
 			return "edit";
 		}
+		//更新処理
+		String message = "更新が完了しました。";
+		model.addAttribute("message", message);
 		adminUserService.update(adminUserRequest);
 		return "/edit";
 	}

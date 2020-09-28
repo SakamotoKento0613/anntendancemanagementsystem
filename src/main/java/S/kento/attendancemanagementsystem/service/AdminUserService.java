@@ -18,7 +18,6 @@ import S.kento.attendancemanagementsystem.request.AdminUserRequest;
 @Service
 @Transactional(rollbackOn = Exception.class)
 public class AdminUserService {
-
 	@Autowired
 	AdminUserRepository adminUserRepository;
 
@@ -58,14 +57,14 @@ public class AdminUserService {
 	 * 管理者検索機能
 	 * @param name
 	 * @param email
-	 * @return 検索結果（完全一致）
+	 * @return 検索結果（あいまい検索）
 	 */
 	public List<Users> findByNameAndLoginId(String name, String email) {
 		return adminUserRepository.findByNameContainingAndEmailContainingOrderById(name, email);
 	}
 
 	/**
-	 *管理者ID検索
+	 * 一覧画面から編集画面へ遷移するとき対象の管理者idを検索
 	 * @param id
 	 * @return  検索結果（id）
 	 */
@@ -84,7 +83,6 @@ public class AdminUserService {
 		fmt.setTimeZone(timezone);
 		Date now = fmt.parse(fmt.format(date));
 		Users adminUser = findById(adminUserRequest.getId());
-
 		adminUser.setEmail(adminUserRequest.getEmail());
 		adminUser.setName(adminUserRequest.getName());
 		adminUser.setPassword(adminUserRequest.getPassword());
