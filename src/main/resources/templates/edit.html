@@ -20,7 +20,8 @@
 		<label>メールアドレス</label> <input type="email" name="input"
 			th:field="*{email}" /> <label>ユーザ名</label> <input type="text"
 			name="input" th:field="*{name}" /> <label>パスワード</label> <input
-			type="password" name="input" th:field="*{password}" /> <input
+			type="password" name="input" th:field="*{password}" /> <label>確認用パスワード</label><input
+			type="password" th:field="*{confirmPassword}"><input
 			type="submit" value="更新" />
 	</form>
 	<table>

@@ -5,10 +5,12 @@ import java.io.Serializable;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import S.kento.attendancemanagementsystem.validation.annotation.ConfirmPassword;
 import S.kento.attendancemanagementsystem.validation.annotation.UnusedEmail;
 import lombok.Data;
 
 @UnusedEmail
+@ConfirmPassword
 @Data
 public class AdminUserRequest implements Serializable {
 	private Integer id;
@@ -21,4 +23,6 @@ public class AdminUserRequest implements Serializable {
 	@NotEmpty(message = "パスワードが空白です")
 	@Size(min = 6,max = 30, message = "パスワードは6文字から30文字以内で入力してください。")
 	private String password;
+	@Size(min = 6,max = 30, message = "パスワードは6文字から30文字以内で入力してください。")
+	private String confirmPassword;
 }
