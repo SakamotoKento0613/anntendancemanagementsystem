@@ -17,4 +17,7 @@ public interface AdminUserRepository extends JpaRepository<Users, Integer> {
 	//emailの重複確認
 	@Query(value = "select t from Users t where t.email = ?1")
 	Users findByOneEmail(@Param("email") Object requestEmail);
+
+	@Query(value = "select t.id from Users t where t.email =:email")
+	String getId(@Param("email") Object requestEmail);
 }
