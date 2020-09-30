@@ -21,7 +21,7 @@ import S.kento.attendancemanagementsystem.validation.validator.ConfirmPasswordVa
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ConfirmPassword {
-	String message() default "確認用パスワードと一致しません";
+	String message() default "パスワードが確認用パスワードと一致しません";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};

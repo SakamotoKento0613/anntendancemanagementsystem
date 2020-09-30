@@ -74,9 +74,10 @@ public class AdminUserService {
 
 	/**
 	 * 管理者更新機能
+	 * @param adminUserRequest
 	 * @throws ParseException
 	 */
-	public void update(AdminUserRequest adminUserRequest) throws ParseException {
+	public void adminUserUpdate(AdminUserRequest adminUserRequest) throws ParseException {
 		Date date = new Date();
 		TimeZone timezone = TimeZone.getTimeZone("Asia/Tokyo");
 		SimpleDateFormat fmt = new SimpleDateFormat();
@@ -88,6 +89,23 @@ public class AdminUserService {
 		adminUser.setPassword(adminUserRequest.getPassword());
 		adminUser.setUpdatedAt(now);
 		adminUser.setUpdatedAtUser(1);//Todo
+		adminUserRepository.save(adminUser);
+	}
+
+	/**
+	 * 管理者削除機能
+	 * @throws ParseException
+	 * @param adminUserRequest
+	 */
+	public void adminUserDelete(AdminUserRequest adminUserRequest) throws ParseException {
+		Date date = new Date();
+		TimeZone timezone = TimeZone.getTimeZone("Asia/Tokyo");
+		SimpleDateFormat fmt = new SimpleDateFormat();
+		fmt.setTimeZone(timezone);
+		Date now = fmt.parse(fmt.format(date));
+		Users adminUser = findById(adminUserRequest.getId());
+		adminUser.setDeletedAt(now);
+		adminUser.setDeletedAtUser(1);//Todo
 		adminUserRepository.save(adminUser);
 	}
 }

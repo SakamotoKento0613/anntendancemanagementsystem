@@ -132,7 +132,19 @@ public class adminUserController {
 		//更新処理
 		String message = "更新が完了しました。";
 		model.addAttribute("message", message);
-		adminUserService.update(adminUserRequest);
+		adminUserService.adminUserUpdate(adminUserRequest);
 		return "/edit";
+	}
+
+	/**
+	 * 削除機能
+	 * @param model
+	 * @return 管理者一覧検索画面
+	 * @throws ParseException
+	 */
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public String adminUsetDeleteFunction(@ModelAttribute AdminUserRequest adminUserRequest, RedirectAttributes redirectAttributes) throws ParseException {
+		adminUserService.adminUserDelete(adminUserRequest);
+		return "redirect:list";
 	}
 }

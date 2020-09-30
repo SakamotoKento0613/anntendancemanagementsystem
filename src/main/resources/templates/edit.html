@@ -10,6 +10,16 @@
 	if (message != null) {
 		alert(message);
 	}
+	function deletedConfirmFunction() {
+		var confirmMessage = confirm("本当に削除してもよろしいですか？");
+		if (confirmMessage == true ) {
+			alert("削除しました");
+			return true
+		} else {
+			alert("キャンセルしました");
+			return false
+		}
+	}
 </script>
 <title>管理者編集画面</title>
 </head>
@@ -22,7 +32,12 @@
 			name="input" th:field="*{name}" /> <label>パスワード</label> <input
 			type="password" name="input" th:field="*{password}" /> <label>確認用パスワード</label><input
 			type="password" th:field="*{confirmPassword}"><input
-			type="submit" value="更新" />
+			type="submit" value="更新">
+	</form>
+	<form th:action="@{/delete}" th:object="${adminUserRequest}"
+		th:method="post">
+		<input type="hidden" th:field="*{id}"> <input type="submit"
+			onclick="return deletedConfirmFunction()" value="削除">
 	</form>
 	<table>
 		<tr th:if="${errorMsg}" th:each="error : ${errorMsg}">
