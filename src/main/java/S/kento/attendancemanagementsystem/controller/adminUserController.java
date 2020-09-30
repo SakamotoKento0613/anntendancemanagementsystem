@@ -58,8 +58,6 @@ public class adminUserController {
 			return "add";
 		}
 		//登録機能
-		String message = "登録が完了しました。";
-		redirectAttributes.addFlashAttribute("message", message);
 		adminUserService.add(adminUserRequest);
 		return "redirect:add";
 	}
@@ -129,9 +127,6 @@ public class adminUserController {
 			model.addAttribute("errorMsg", errorList);
 			return "edit";
 		}
-		//更新処理
-		String message = "更新が完了しました。";
-		model.addAttribute("message", message);
 		adminUserService.adminUserUpdate(adminUserRequest);
 		return "/edit";
 	}
@@ -143,7 +138,8 @@ public class adminUserController {
 	 * @throws ParseException
 	 */
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	public String adminUsetDeleteFunction(@ModelAttribute AdminUserRequest adminUserRequest, RedirectAttributes redirectAttributes) throws ParseException {
+	public String adminUsetDeleteFunction(@ModelAttribute AdminUserRequest adminUserRequest,
+			RedirectAttributes redirectAttributes) throws ParseException {
 		adminUserService.adminUserDelete(adminUserRequest);
 		return "redirect:list";
 	}

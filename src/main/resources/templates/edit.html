@@ -6,17 +6,24 @@
 	src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"
 	th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
 <script th:inline="javascript">
-	var message = /*[[${message}]]*/
-	if (message != null) {
-		alert(message);
-	}
-	function deletedConfirmFunction() {
-		var confirmMessage = confirm("本当に削除してもよろしいですか？");
-		if (confirmMessage == true ) {
-			alert("削除しました");
+	function confirmFunction() {
+		var confirmMessage = confirm("ユーザ情報を更新します。よろしいですか？");
+		if (confirmMessage == true) {
+			alert("ユーザ情報を更新しました");
 			return true
 		} else {
-			alert("キャンセルしました");
+			alert("更新をキャンセルしました");
+			return false
+		}
+	}
+
+	function deletedConfirmFunction() {
+		var confirmMessage = confirm("本当に削除してもよろしいですか？");
+		if (confirmMessage == true) {
+			alert("ユーザ情報を削除しました");
+			return true
+		} else {
+			alert("削除をキャンセルしました");
 			return false
 		}
 	}
@@ -31,8 +38,8 @@
 			th:field="*{email}" /> <label>ユーザ名</label> <input type="text"
 			name="input" th:field="*{name}" /> <label>パスワード</label> <input
 			type="password" name="input" th:field="*{password}" /> <label>確認用パスワード</label><input
-			type="password" th:field="*{confirmPassword}"><input
-			type="submit" value="更新">
+			type="password" th:field="*{confirmPassword}"> <input
+			type="submit" onclick="return confirmFunction()" value="削除">
 	</form>
 	<form th:action="@{/delete}" th:object="${adminUserRequest}"
 		th:method="post">
