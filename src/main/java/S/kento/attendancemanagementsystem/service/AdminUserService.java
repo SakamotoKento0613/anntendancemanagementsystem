@@ -104,6 +104,8 @@ public class AdminUserService {
 		fmt.setTimeZone(timezone);
 		Date now = fmt.parse(fmt.format(date));
 		Users adminUser = findById(adminUserRequest.getId());
+		adminUser.setUpdatedAt(now);
+		adminUser.setUpdatedAtUser(1);//Todo
 		adminUser.setDeletedAt(now);
 		adminUser.setDeletedAtUser(1);//Todo
 		adminUserRepository.save(adminUser);
